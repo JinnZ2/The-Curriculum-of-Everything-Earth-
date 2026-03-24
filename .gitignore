@@ -5,9 +5,21 @@ __pycache__/
 # OS and editor cruft
 .DS_Store
 .vscode/
+*.swp
+*.swo
+*~
 
 # Archives and temp files
 *.zip
 *.log
 *.bak
 .env
+
+# Node.js
+node_modules/
+dist/
+build/
+.cache/
+
+# Vite
+*.local

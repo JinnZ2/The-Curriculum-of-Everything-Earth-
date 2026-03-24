@@ -276,42 +276,33 @@ const BioCognitiveTranslator = () => {
   const [ageGroup, setAgeGroup] = useState("elementary");
   const [context, setContext] = useState("classroom");
   const [translation, setTranslation] = useState(null);
-  const [processing, setProcessing] = useState(false);
 
   // --- Core translation engine ---
   const translateConcept = () => {
-    setProcessing(true);
+    const conceptData = conceptDatabase[concept.toLowerCase()];
+    if (!conceptData) {
+      setTranslation({ error: "Concept not found in database" });
+      return;
+    }
 
-    setTimeout(() => {
-      const conceptData = conceptDatabase[concept.toLowerCase()];
-      if (!conceptData) {
-        setTranslation({ error: "Concept not found in database" });
-        setProcessing(false);
-        return;
-      }
+    const natureTeacher = findBestTeacherMatch(concept);
 
-      const natureTeacher = findBestTeacherMatch(concept);
-
-      const completeTranslation = {
-        original_concept: concept,
-        difficulty_score: conceptData.difficulty,
-        category: conceptData.category,
-        teacher: natureTeacher,
-        explanation: {
-          story: natureTeacher.story_templates[ageGroup],
-          keywords: conceptData.keywords.join(", "),
-        },
-        activity: {
-          main_activity: natureTeacher.activities[ageGroup],
-          materials_needed: extractMaterials(natureTeacher.activities[ageGroup]),
-        },
-        wow_fact: natureTeacher.wow_facts[ageGroup],
-        offline_ready: true,
-      };
-
-      setTranslation(completeTranslation);
-      setProcessing(false);
-    }, 1500);
+    setTranslation({
+      original_concept: concept,
+      difficulty_score: conceptData.difficulty,
+      category: conceptData.category,
+      teacher: natureTeacher,
+      explanation: {
+        story: natureTeacher.story_templates[ageGroup],
+        keywords: conceptData.keywords.join(", "),
+      },
+      activity: {
+        main_activity: natureTeacher.activities[ageGroup],
+        materials_needed: extractMaterials(natureTeacher.activities[ageGroup]),
+      },
+      wow_fact: natureTeacher.wow_facts[ageGroup],
+      offline_ready: true,
+    });
   };
 
   return (
@@ -387,20 +378,11 @@ const BioCognitiveTranslator = () => {
 
         <button
           onClick={translateConcept}
-          disabled={!concept || processing}
+          disabled={!concept}
           className="w-full bg-gradient-to-r from-purple-600 to-blue-600 text-white py-4 rounded-lg text-xl font-bold hover:from-purple-700 hover:to-blue-700 disabled:opacity-50 flex items-center justify-center gap-3 transform hover:scale-105 transition-all duration-200"
         >
-          {processing ? (
-            <>
-              <div className="animate-spin rounded-full h-6 w-6 border-2 border-white border-t-transparent" />
-              🧠 Translating to Bio-Cognitive...
-            </>
-          ) : (
-            <>
-              <Sparkles className="w-6 h-6" />
-              🚀 Generate Bio-Cognitive Lesson!
-            </>
-          )}
+          <Sparkles className="w-6 h-6" />
+          Generate Bio-Cognitive Lesson!
         </button>
 
         {translation && !translation.error && (

@@ -1,4 +1,4 @@
-const animalTeachers = {
+export const animalTeachers = {
   sunflower_chef: {
     teaches: ['photosynthesis', 'energy_conversion', 'solar_power'],
     emoji: '🌻',
