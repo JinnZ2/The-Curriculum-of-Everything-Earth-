@@ -4,6 +4,9 @@ const typeColors = {
   animal: { bg: "bg-amber-50", border: "border-amber-300", text: "text-amber-700", badge: "bg-amber-100" },
   plant: { bg: "bg-green-50", border: "border-green-300", text: "text-green-700", badge: "bg-green-100" },
   crystal: { bg: "bg-purple-50", border: "border-purple-300", text: "text-purple-700", badge: "bg-purple-100" },
+  plasma: { bg: "bg-blue-50", border: "border-blue-300", text: "text-blue-700", badge: "bg-blue-100" },
+  energy: { bg: "bg-cyan-50", border: "border-cyan-300", text: "text-cyan-700", badge: "bg-cyan-100" },
+  cultural: { bg: "bg-rose-50", border: "border-rose-300", text: "text-rose-700", badge: "bg-rose-100" },
 };
 
 const TeacherCard = ({ teacher, onClick, compact = false, selected = false }) => {

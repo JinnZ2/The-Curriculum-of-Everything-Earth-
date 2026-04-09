@@ -28,7 +28,7 @@ const TeacherGallery = ({ onSelectTeacher }) => {
     });
   }, [teacherList, search, typeFilter]);
 
-  const typeEmojis = { animal: "🐾", plant: "🌿", crystal: "💎" };
+  const typeEmojis = { animal: "🐾", plant: "🌿", crystal: "💎", plasma: "⚡", energy: "🌊", cultural: "🌏" };
 
   return (
     <div className="space-y-6">

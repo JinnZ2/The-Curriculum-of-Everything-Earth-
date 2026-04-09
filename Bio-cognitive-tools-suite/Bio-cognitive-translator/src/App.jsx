@@ -1,14 +1,16 @@
 import React, { useState } from "react";
-import { Brain, Users, Compass, Heart, Zap } from "lucide-react";
+import { Brain, Users, Compass, Heart, Globe, Zap } from "lucide-react";
 import BioCognitiveTranslator from "./Components/Bio-cognitive-translator";
 import TeacherGallery from "./Components/TeacherGallery";
 import ConceptExplorer from "./Components/ConceptExplorer";
+import CulturalWisdom from "./Components/CulturalWisdom";
 import FavoritesManager from "./Components/FavoritesManager";
 
 const tabs = [
   { id: "translator", label: "Translator", icon: Brain, shortLabel: "Translate" },
   { id: "gallery", label: "Teacher Gallery", icon: Users, shortLabel: "Teachers" },
   { id: "explorer", label: "Concept Explorer", icon: Compass, shortLabel: "Explore" },
+  { id: "cultural", label: "Cultural Wisdom", icon: Globe, shortLabel: "Cultural" },
   { id: "favorites", label: "Saved Lessons", icon: Heart, shortLabel: "Saved" },
 ];
 
@@ -97,6 +99,17 @@ const App = () => {
           </div>
 
           <div
+            id="panel-cultural"
+            role="tabpanel"
+            aria-labelledby="cultural"
+            hidden={activeTab !== "cultural"}
+          >
+            {activeTab === "cultural" && (
+              <CulturalWisdom onSelectConcept={handleSelectConcept} />
+            )}
+          </div>
+
+          <div
             id="panel-favorites"
             role="tabpanel"
             aria-labelledby="favorites"
@@ -114,7 +127,7 @@ const App = () => {
           </div>
           <p>
             Bio-Cognitive Learning Engine - Nature-Inspired Education -
-            Animals, Plants, and Crystals
+            Animals, Plants, Crystals, Energy, Plasma, and Cultural Wisdom
           </p>
         </footer>
       </main>

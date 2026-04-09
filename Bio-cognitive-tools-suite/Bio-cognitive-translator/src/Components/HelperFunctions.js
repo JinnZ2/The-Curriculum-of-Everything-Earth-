@@ -39,6 +39,30 @@ export const extractMaterials = (activityDescription) => {
     materials.push("open space with walls");
   if (activityDescription.includes("measure"))
     materials.push("ruler or measuring tape");
+  if (activityDescription.includes("balloon")) materials.push("balloon");
+  if (activityDescription.includes("slinky")) materials.push("slinky or spring");
+  if (activityDescription.includes("iron filing") || activityDescription.includes("iron filings"))
+    materials.push("iron filings");
+  if (activityDescription.includes("flashlight")) materials.push("flashlight");
+  if (activityDescription.includes("scarf") || activityDescription.includes("scarves"))
+    materials.push("colored scarves or fabric");
+  if (activityDescription.includes("playdough") || activityDescription.includes("playdoh"))
+    materials.push("playdough");
+  if (activityDescription.includes("bottle") || activityDescription.includes("jar"))
+    materials.push("plastic bottle or jar");
+  if (activityDescription.includes("foil")) materials.push("aluminum foil");
+  if (activityDescription.includes("star") && activityDescription.includes("compass"))
+    materials.push("paper plate", "markers");
+  if (activityDescription.includes("song") || activityDescription.includes("sing"))
+    materials.push("notebook for songwriting");
+  if (activityDescription.includes("tube")) materials.push("tubes or hoses");
+  if (activityDescription.includes("pot")) materials.push("plant pots", "soil");
+  if (activityDescription.includes("seed")) materials.push("seeds");
+  if (activityDescription.includes("ash")) materials.push("wood ash");
+  if (activityDescription.includes("freeze") || activityDescription.includes("ice"))
+    materials.push("water", "freezer");
+  if (activityDescription.includes("cup")) materials.push("cups or containers");
+  if (activityDescription.includes("beanbag")) materials.push("beanbag or small ball");
   return materials.length > 0 ? materials : ["basic household items"];
 };
 
